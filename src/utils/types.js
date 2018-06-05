@@ -9,4 +9,9 @@ const book = shape({
   }).isRequired,
 });
 
-export default { book };
+const shelf = shape({
+  NAME: string.isRequired,
+  TITLE: string.isRequired,
+});
+
+export default { book, shelf };

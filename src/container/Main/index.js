@@ -5,13 +5,15 @@ import AddBook from '../../components/AddBook';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
 import * as BooksAPI from '../../BooksAPI';
+import constants from '../../utils/constants';
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       error: false,
+      loading: true,
+      shelfs: constants.SHELFS,
       books: [],
     };
   }
@@ -44,7 +46,12 @@ class Main extends Component {
   }
 
   render() {
-    const { error, loading, books } = this.state;
+    const {
+      error,
+      loading,
+      shelfs,
+      books,
+    } = this.state;
 
     if (error) {
       return <Error />;
@@ -55,7 +62,7 @@ class Main extends Component {
     return (
       <div className="list-books">
         <Header />
-        <Bookshelfs books={books} />
+        <Bookshelfs shelfs={shelfs} books={books} />
         <AddBook />
       </div>
     );

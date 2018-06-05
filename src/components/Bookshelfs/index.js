@@ -2,25 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import randomID from 'random-id';
 import Bookshelf from '../../components/Bookshelf';
-import constants from '../../utils/constants';
 import Types from '../../utils/types';
 
-const { SHELFS } = constants;
-
 const Bookshelfs = (props) => {
-  const { books } = props;
+  const { shelfs, books } = props;
 
   return (
     <div className="list-books-content">
-      {SHELFS.map(({ NAME, TITLE }) => {
-        const booksForThisShelf = books.filter(book => book.shelf === NAME);
-        return <Bookshelf key={randomID()} title={TITLE} books={booksForThisShelf} />;
+      {shelfs.map((shelf) => {
+        const booksForThisShelf = books.filter(book => book.shelf === shelf.NAME);
+        return <Bookshelf key={randomID()} title={shelf.TITLE} books={booksForThisShelf} />;
       })}
     </div>
   );
 };
 
 Bookshelfs.propTypes = {
+  shelfs: PropTypes.arrayOf(Types.shelf).isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
 };
 
