@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header';
-import Bookshelf from '../../components/Bookshelf';
+import Bookshelfs from '../../components/Bookshelfs';
 import AddBook from '../../components/AddBook';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
@@ -46,11 +46,6 @@ class Main extends Component {
   render() {
     const { error, loading, books } = this.state;
 
-    console.log(`Error: ${error}`);
-    console.log(`Loading: ${loading}`);
-    console.log('Books');
-    console.log(books);
-
     if (error) {
       return <Error />;
     } else if (loading) {
@@ -60,9 +55,7 @@ class Main extends Component {
     return(
       <div className="list-books">
         <Header />
-        <div className="list-books-content">
-          <Bookshelf />
-        </div>
+        <Bookshelfs books={books} />
         <AddBook />
       </div>
     );
