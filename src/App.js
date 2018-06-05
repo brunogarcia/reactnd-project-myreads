@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Main from './container/Main';
 import Search from './container/Search';
 import NoMatch from './components/NoMatch';
 import constants from './utils/constants';
-import './App.css'
+import './App.css';
 
 const { MAIN, SEARCH } = constants.APP.PATH;
 

@@ -4,7 +4,7 @@ import Bookshelfs from '../../components/Bookshelfs';
 import AddBook from '../../components/AddBook';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
-import * as BooksAPI from '../../BooksAPI'
+import * as BooksAPI from '../../BooksAPI';
 
 class Main extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Main extends Component {
       loading: true,
       error: false,
       books: [],
-    }
+    };
   }
 
   componentDidMount() {
@@ -52,7 +52,7 @@ class Main extends Component {
       return <Loading />;
     }
 
-    return(
+    return (
       <div className="list-books">
         <Header />
         <Bookshelfs books={books} />
