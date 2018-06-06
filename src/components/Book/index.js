@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash.isempty';
 import Changer from '../Changer';
 import Types from '../../utils/types';
 
@@ -30,7 +31,10 @@ const Book = (props) => {
           <Changer shelf={shelf} onChange={handleChangeShelf} />
         </div>
         <div className="book-title">{title}</div>
-        <div className="book-authors">{getAuthors(authors)}</div>
+        {
+          !isEmpty(authors) &&
+          <div className="book-authors">{getAuthors(authors)}</div>
+        }
       </div>
     </li>
   );

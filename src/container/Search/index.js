@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import constants from '../../utils/constants';
+import isEmpty from 'lodash.isempty';
+import SearchResults from '../../components/SearchResults';
 import Error from '../../components/Error';
+import constants from '../../utils/constants';
 import * as BooksAPI from '../../BooksAPI';
 
 const { MAIN } = constants.APP.PATH;
@@ -17,7 +19,8 @@ class Search extends Component {
       books: [],
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.handleChangeShelf = this.handleChangeShelf.bind(this);
   }
 
   componentDidMount() {
@@ -28,11 +31,15 @@ class Search extends Component {
     this.isAlreadyMounted = false;
   }
 
-  handleChange(e) {
+  handleChangeSearch(e) {
     const { value } = e.target;
     this.setState({
       query: value,
     }, this.checkMinLength);
+  }
+
+  handleChangeShelf(book, shelf) {
+    console.log(book, shelf);
   }
 
   checkMinLength() {
@@ -79,8 +86,6 @@ class Search extends Component {
       return <Error />;
     }
 
-    console.log(books);
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -89,14 +94,18 @@ class Search extends Component {
             <input
               type="text"
               value={query}
-              onChange={this.handleChange}
+              onChange={this.handleChangeSearch}
               placeholder="Search by title or author"
             />
           </div>
         </div>
-        <div className="search-books-results">
-          <ol className="books-grid"></ol>
-        </div>
+        {
+          !isEmpty(books) &&
+          <SearchResults
+            books={books}
+            onChangeShelf={this.handleChangeShelf}
+          />
+        }
       </div>
     );
   }
