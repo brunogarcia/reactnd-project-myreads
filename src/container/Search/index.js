@@ -36,7 +36,7 @@ class Search extends Component {
   handleChangeSearch(e) {
     const { value } = e.target;
     this.setState({
-      query: value,
+      query: value.trimStart(),
     }, this.checkMinLength);
   }
 
@@ -80,6 +80,8 @@ class Search extends Component {
     this.setState({
       searching: true,
     });
+
+    console.log(JSON.stringify({ query }));
 
     BooksAPI.search(query)
       .then((response) => {

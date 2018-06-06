@@ -69,8 +69,10 @@ body, .app {
 
 /* search page */
 .search-searching {
-  margin: 5em 0;
+  padding-top: 3.5em;
   text-align: center;
+  position: fixed;
+  width: 100%;
 }
 .search-books-bar {
   position: fixed;
@@ -108,7 +110,7 @@ body, .app {
 }
 
 .search-books-results {
-  padding: 80px 10px 20px;
+  padding: 100px 10px 20px;
 }
 
 /* books grid */
