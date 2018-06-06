@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import isEmpty from 'lodash.isempty';
 import SearchResults from '../../components/SearchResults';
+import NoResults from '../../components/NoResults';
 import Error from '../../components/Error';
 import constants from '../../utils/constants';
 import * as BooksAPI from '../../BooksAPI';
@@ -15,6 +16,7 @@ class Search extends Component {
     this.state = {
       query: '',
       loading: false,
+      emptyQuery: false,
       error: false,
       books: [],
     };
@@ -58,11 +60,18 @@ class Search extends Component {
 
   searchBooks(query) {
     BooksAPI.search(query)
-      .then((books) => {
-        if (this.isAlreadyMounted) {
+      .then((response) => {
+        if (response.error && this.isAlreadyMounted) {
           this.setState({
-            books,
+            emptyQuery: true,
+          });
+        }
+
+        if (!response.error && this.isAlreadyMounted) {
+          this.setState({
+            books: response,
             loading: false,
+            emptyQuery: false,
           });
         }
       }).catch(() => {
@@ -78,6 +87,7 @@ class Search extends Component {
     const {
       error,
       loading,
+      emptyQuery,
       query,
       books,
     } = this.state;
@@ -99,6 +109,9 @@ class Search extends Component {
             />
           </div>
         </div>
+        {
+          emptyQuery && <NoResults />
+        }
         {
           !isEmpty(books) &&
           <SearchResults
