@@ -50,29 +50,35 @@ class Search extends Component {
     if (query.length < MIN_LENGTH_SEARCH) {
       this.setState({
         books: [],
+        emptyQuery: false,
       });
-    }
-
-    if (query.length >= MIN_LENGTH_SEARCH) {
+    } else {
       this.searchBooks(query);
+    }
+  }
+
+  checkAPIResponse(response) {
+    const { error } = response;
+
+    if (error) {
+      this.setState({
+        loading: false,
+        emptyQuery: true,
+      });
+    } else {
+      this.setState({
+        books: response,
+        loading: false,
+        emptyQuery: false,
+      });
     }
   }
 
   searchBooks(query) {
     BooksAPI.search(query)
       .then((response) => {
-        if (response.error && this.isAlreadyMounted) {
-          this.setState({
-            emptyQuery: true,
-          });
-        }
-
-        if (!response.error && this.isAlreadyMounted) {
-          this.setState({
-            books: response,
-            loading: false,
-            emptyQuery: false,
-          });
+        if (this.isAlreadyMounted) {
+          this.checkAPIResponse(response);
         }
       }).catch(() => {
         if (this.isAlreadyMounted) {
