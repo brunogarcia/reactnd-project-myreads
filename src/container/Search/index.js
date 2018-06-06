@@ -15,7 +15,7 @@ class Search extends Component {
     super(props);
     this.state = {
       query: '',
-      loading: false,
+      searching: false,
       emptyQuery: false,
       error: false,
       books: [],
@@ -50,6 +50,7 @@ class Search extends Component {
     if (query.length < MIN_LENGTH_SEARCH) {
       this.setState({
         books: [],
+        searching: false,
         emptyQuery: false,
       });
     } else {
@@ -62,19 +63,24 @@ class Search extends Component {
 
     if (error) {
       this.setState({
-        loading: false,
+        books: [],
+        searching: false,
         emptyQuery: true,
       });
     } else {
       this.setState({
         books: response,
-        loading: false,
+        searching: false,
         emptyQuery: false,
       });
     }
   }
 
   searchBooks(query) {
+    this.setState({
+      searching: true,
+    });
+
     BooksAPI.search(query)
       .then((response) => {
         if (this.isAlreadyMounted) {
@@ -92,7 +98,7 @@ class Search extends Component {
   render() {
     const {
       error,
-      loading,
+      searching,
       emptyQuery,
       query,
       books,
@@ -117,6 +123,9 @@ class Search extends Component {
         </div>
         {
           emptyQuery && <NoResults />
+        }
+        {
+          searching && <p className="search-searching">Searching...</p>
         }
         {
           !isEmpty(books) &&
