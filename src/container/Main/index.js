@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import isEmpty from 'lodash.isempty';
 import Header from '../../components/Header';
 import Bookshelfs from '../../components/Bookshelfs';
 import AddBook from '../../components/AddBook';
@@ -16,6 +17,8 @@ class Main extends Component {
       shelfs: constants.SHELFS,
       books: [],
     };
+
+    this.handleChangeShelf = this.handleChangeShelf.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +48,25 @@ class Main extends Component {
       });
   }
 
+  handleChangeShelf(book, shelf) {
+    this.setState({
+      loading: true,
+    });
+
+    BooksAPI.update(book, shelf)
+      .then((response) => {
+        if (!isEmpty(response) && this.isAlreadyMounted) {
+          this.getAllBooks();
+        }
+      }).catch(() => {
+        if (this.isAlreadyMounted) {
+          this.setState({
+            error: true,
+          });
+        }
+      });
+  }
+
   render() {
     const {
       error,
@@ -55,15 +77,20 @@ class Main extends Component {
 
     if (error) {
       return <Error />;
-    } else if (loading) {
-      return <Loading />;
     }
 
     return (
-      <div className="list-books">
-        <Header />
-        <Bookshelfs shelfs={shelfs} books={books} />
-        <AddBook />
+      <div className="main">
+        <Loading isLoading={loading} />
+        <div className="list-books">
+          <Header />
+          <Bookshelfs
+            books={books}
+            shelfs={shelfs}
+            onChangeShelf={this.handleChangeShelf}
+          />
+          <AddBook />
+        </div>
       </div>
     );
   }

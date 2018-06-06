@@ -1,4 +1,19 @@
 .Loading-main {
-  margin: 2em auto;
-  text-align: center
+  text-align: center;
+  z-index: 2;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+}
+
+.Loading-opacity {
+  background-color: #999;
+  opacity: 0.6;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+
+.Loading-spinner {
+  margin: 25% auto;
 }

@@ -18,5 +18,9 @@ export default {
       NAME: 'read',
       TITLE: 'Read',
     },
+    {
+      NAME: 'none',
+      TITLE: 'None',
+    },
   ],
 };

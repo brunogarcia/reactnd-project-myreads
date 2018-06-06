@@ -4,13 +4,20 @@ import Book from '../Book';
 import Types from '../../utils/types';
 
 const Bookshelf = (props) => {
-  const { title, books } = props;
+  const { shelf, books, onChangeShelf } = props;
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">{title}</h2>
+      <h2 className="bookshelf-title">{shelf.TITLE}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {books.map(book => <Book key={book.id} book={book} />)}
+          {books.map(book => (
+            <Book
+              key={book.id}
+              shelf={shelf}
+              book={book}
+              onChangeShelf={onChangeShelf}
+            />
+          ))}
         </ol>
       </div>
     </div>
@@ -18,8 +25,9 @@ const Bookshelf = (props) => {
 };
 
 Bookshelf.propTypes = {
-  title: PropTypes.string.isRequired,
+  shelf: Types.shelf.isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
 };
 
 

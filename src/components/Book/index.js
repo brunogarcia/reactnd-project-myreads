@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Changer from '../Changer';
 import Types from '../../utils/types';
 
 const getImage = image => ({
@@ -10,7 +12,13 @@ const getImage = image => ({
 const getAuthors = authors => authors.join(', ');
 
 const Book = (props) => {
-  const { title, authors, imageLinks } = props.book;
+  const { shelf, book, onChangeShelf } = props;
+  const { title, authors, imageLinks } = book;
+
+  const handleChangeShelf = (newShelf) => {
+    onChangeShelf(book, newShelf);
+  };
+
   return (
     <li>
       <div className="book">
@@ -19,15 +27,7 @@ const Book = (props) => {
             className="book-cover"
             style={getImage(imageLinks.smallThumbnail)}
           />
-          <div className="book-shelf-changer">
-            <select>
-              <option value="none" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <Changer shelf={shelf} onChange={handleChangeShelf} />
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">{getAuthors(authors)}</div>
@@ -37,7 +37,9 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
+  shelf: Types.shelf.isRequired,
   book: Types.book.isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
 };
 
 export default Book;
