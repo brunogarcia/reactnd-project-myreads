@@ -53,6 +53,7 @@ class SearchBar extends Component {
         </Link>
         <div className="search-books-input-wrapper">
           <input
+            autoFocus
             type="text"
             value={query}
             onKeyDown={this.handleKeyDownSearch}
