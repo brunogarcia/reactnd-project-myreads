@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash.isempty';
 import Book from '../Book';
+import NoResults from '../../components/NoResults';
+import Searching from '../../components/Searching';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 
@@ -14,27 +17,38 @@ const getDefaultShelf = () => {
 };
 
 const SearchResults = (props) => {
-  const { books, onChangeShelf } = props;
+  const {
+    books,
+    searching,
+    noResults,
+    onChangeShelf,
+  } = props;
 
   console.log(books);
 
   return (
     <div className="search-books-results">
-      <ol className="books-grid">
-        {books.map(book => (
-          <Book
-            key={book.id}
-            shelf={getDefaultShelf()}
-            book={book}
-            onChangeShelf={onChangeShelf}
-          />
-        ))}
-      </ol>
+      { noResults && <NoResults /> }
+      { searching && <Searching /> }
+      { !isEmpty(books) &&
+        <ol className="books-grid">
+          {books.map(book => (
+            <Book
+              key={book.id}
+              shelf={getDefaultShelf()}
+              book={book}
+              onChangeShelf={onChangeShelf}
+            />
+          ))}
+        </ol>
+      }
     </div>
   );
 };
 
 SearchResults.propTypes = {
+  noResults: PropTypes.bool.isRequired,
+  searching: PropTypes.bool.isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import isEmpty from 'lodash.isempty';
 import SearchResults from '../../components/SearchResults';
-import NoResults from '../../components/NoResults';
-import Searching from '../../components/Searching';
 import Error from '../../components/Error';
 import * as BooksAPI from '../../BooksAPI';
 import SearchBar from '../../components/SearchBar';
@@ -103,14 +100,12 @@ class Search extends Component {
         <SearchBar
           onChangeSearch={this.handleChangeSearch}
         />
-        { noResults && <NoResults /> }
-        { searching && <Searching /> }
-        { !isEmpty(books) &&
-          <SearchResults
-            books={books}
-            onChangeShelf={this.handleChangeShelf}
-          />
-        }
+        <SearchResults
+          books={books}
+          noResults={noResults}
+          searching={searching}
+          onChangeShelf={this.handleChangeShelf}
+        />
       </div>
     );
   }
