@@ -17,7 +17,7 @@ const SearchResults = (props) => {
 
   return (
     <div className="search-books-results">
-      { message && <Toastr message={message} /> }
+      <Toastr message={message} />
       {
         !isEmpty(books) &&
         <BooksGrid
@@ -32,12 +32,9 @@ const SearchResults = (props) => {
 
 SearchResults.propTypes = {
   books: PropTypes.arrayOf(Types.book).isRequired,
-  message: PropTypes.string,
+  message: PropTypes.string.isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };
 
-SearchResults.defaultProps = {
-  message: '',
-};
 
 export default SearchResults;
