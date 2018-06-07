@@ -14,5 +14,11 @@ export default {
   SEARCH: {
     ENTER_KEY: 13,
     WAIT_INTERVAL: 500,
+    MIN_LENGTH_SEARCH: 5,
+    MESSAGES: {
+      noResults: 'No results for that query!',
+      searching: 'Searching...',
+      shelfChanged: 'Change applied successfully',
+    },
   },
 };
