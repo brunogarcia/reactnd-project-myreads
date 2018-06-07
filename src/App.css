@@ -67,13 +67,15 @@ body, .app {
   font-size: 0;
 }
 
-/* search page */
-.search-searching {
-  padding-top: 3.5em;
+/* toastr component */
+.toastr-message {
+  margin-top: -20px;
   text-align: center;
   position: fixed;
   width: 100%;
 }
+
+/* search page */
 .search-books-bar {
   position: fixed;
   width: 100%;
