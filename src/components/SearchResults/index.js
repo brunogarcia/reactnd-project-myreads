@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash.isempty';
 import BooksGrid from '../BooksGrid';
-import NoResults from '../NoResults';
-import Searching from '../Searching';
+import Toastr from '../Toastr';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 
@@ -12,17 +11,13 @@ const { none } = constants.SHELFS;
 const SearchResults = (props) => {
   const {
     books,
+    message,
     onChangeShelf,
-    searching,
-    noResults,
   } = props;
-
-  console.log(books);
 
   return (
     <div className="search-books-results">
-      { noResults && <NoResults /> }
-      { searching && <Searching /> }
+      { message && <Toastr message={message} /> }
       {
         !isEmpty(books) &&
         <BooksGrid
@@ -36,10 +31,13 @@ const SearchResults = (props) => {
 };
 
 SearchResults.propTypes = {
-  noResults: PropTypes.bool.isRequired,
-  searching: PropTypes.bool.isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
+  message: PropTypes.string,
   onChangeShelf: PropTypes.func.isRequired,
+};
+
+SearchResults.defaultProps = {
+  message: '',
 };
 
 export default SearchResults;
