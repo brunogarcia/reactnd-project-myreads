@@ -5,9 +5,9 @@ import isEmpty from 'lodash.isempty';
 import Bookshelf from '../../components/Bookshelf';
 import Types from '../../utils/types';
 
-const Bookshelfs = (props) => {
-  const { shelfs, books, onChangeShelf } = props;
-  const items = Object.entries(shelfs);
+const Bookshelves = (props) => {
+  const { shelves, books, onChangeShelf } = props;
+  const items = Object.entries(shelves);
 
   return (
     <div className="list-books-content">
@@ -32,10 +32,10 @@ const Bookshelfs = (props) => {
   );
 };
 
-Bookshelfs.propTypes = {
-  shelfs: Types.shelfs.isRequired,
+Bookshelves.propTypes = {
+  shelves: Types.shelves.isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };
 
-export default Bookshelfs;
+export default Bookshelves;

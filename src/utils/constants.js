@@ -5,7 +5,7 @@ export default {
       SEARCH: '/search',
     },
   },
-  SHELFS: {
+  SHELVES: {
     currentlyReading: 'Currently reading',
     wantToRead: 'Want to read',
     read: 'Read',

@@ -6,7 +6,7 @@ import Toastr from '../Toastr';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 
-const { none } = constants.SHELFS;
+const { none } = constants.SHELVES;
 
 const SearchResults = (props) => {
   const {

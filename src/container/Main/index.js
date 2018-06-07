@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import isEmpty from 'lodash.isempty';
 import Header from '../../components/Header';
-import Bookshelfs from '../../components/Bookshelfs';
+import Bookshelves from '../../components/Bookshelves';
 import AddBook from '../../components/AddBook';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
@@ -14,7 +14,7 @@ class Main extends Component {
     this.state = {
       error: false,
       loading: true,
-      shelfs: constants.SHELFS,
+      shelves: constants.SHELVES,
       books: [],
     };
 
@@ -71,7 +71,7 @@ class Main extends Component {
     const {
       error,
       loading,
-      shelfs,
+      shelves,
       books,
     } = this.state;
 
@@ -84,9 +84,9 @@ class Main extends Component {
         <Loading isLoading={loading} />
         <div className="list-books">
           <Header />
-          <Bookshelfs
+          <Bookshelves
             books={books}
-            shelfs={shelfs}
+            shelves={shelves}
             onChangeShelf={this.handleChangeShelf}
           />
           <AddBook />
