@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import isEmpty from 'lodash.isempty';
 import SearchResults from '../../components/SearchResults';
 import NoResults from '../../components/NoResults';
+import Searching from '../../components/Searching';
 import Error from '../../components/Error';
 import * as BooksAPI from '../../BooksAPI';
 import SearchBar from '../../components/SearchBar';
@@ -13,7 +14,7 @@ class Search extends Component {
     super(props);
     this.state = {
       searching: false,
-      emptyQuery: false,
+      noResults: false,
       error: false,
       books: [],
     };
@@ -39,7 +40,7 @@ class Search extends Component {
       this.setState({
         books: [],
         searching: false,
-        emptyQuery: false,
+        noResults: false,
       });
     } else {
       this.searchBooks(query);
@@ -53,13 +54,13 @@ class Search extends Component {
       this.setState({
         books: [],
         searching: false,
-        emptyQuery: true,
+        noResults: true,
       });
     } else {
       this.setState({
         books: response,
         searching: false,
-        emptyQuery: false,
+        noResults: false,
       });
     }
   }
@@ -88,8 +89,8 @@ class Search extends Component {
   render() {
     const {
       error,
+      noResults,
       searching,
-      emptyQuery,
       books,
     } = this.state;
 
@@ -99,9 +100,11 @@ class Search extends Component {
 
     return (
       <div className="search-books">
-        <SearchBar onChangeSearch={this.handleChangeSearch} />
-        { emptyQuery && <NoResults /> }
-        { searching && <p className="search-searching">Searching...</p> }
+        <SearchBar
+          onChangeSearch={this.handleChangeSearch}
+        />
+        { noResults && <NoResults /> }
+        { searching && <Searching /> }
         { !isEmpty(books) &&
           <SearchResults
             books={books}
