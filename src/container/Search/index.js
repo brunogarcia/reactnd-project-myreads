@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import SearchResults from '../../components/SearchResults';
-import Error from '../../components/Error';
+import isEmpty from 'lodash.isempty';
 import * as BooksAPI from '../../BooksAPI';
+import Error from '../../components/Error';
 import SearchBar from '../../components/SearchBar';
+import SearchResults from '../../components/SearchResults';
+import constants from '../../utils/constants';
 
-const MIN_LENGTH_SEARCH = 5;
+const { MIN_LENGTH_SEARCH, MESSAGES } = constants.SEARCH;
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searching: false,
-      noResults: false,
+      message: '',
       error: false,
       books: [],
     };
@@ -29,15 +30,28 @@ class Search extends Component {
   }
 
   handleChangeShelf(book, shelf) {
-    console.log(book, shelf);
+    BooksAPI.update(book, shelf)
+      .then((response) => {
+        if (!isEmpty(response) && this.isAlreadyMounted) {
+          console.log(response);
+          this.setState({
+            message: MESSAGES.shelfChanged,
+          });
+        }
+      }).catch(() => {
+        if (this.isAlreadyMounted) {
+          this.setState({
+            error: true,
+          });
+        }
+      });
   }
 
   handleChangeSearch(query) {
     if (query.length < MIN_LENGTH_SEARCH) {
       this.setState({
         books: [],
-        searching: false,
-        noResults: false,
+        message: '',
       });
     } else {
       this.searchBooks(query);
@@ -50,28 +64,25 @@ class Search extends Component {
     if (error) {
       this.setState({
         books: [],
-        searching: false,
-        noResults: true,
+        message: MESSAGES.noResults,
       });
     } else {
       this.setState({
         books: response,
-        searching: false,
-        noResults: false,
+        message: '',
       });
     }
   }
 
   searchBooks(query) {
     this.setState({
-      searching: true,
+      message: MESSAGES.searching,
     });
-
-    console.log(JSON.stringify({ query }));
 
     BooksAPI.search(query)
       .then((response) => {
         if (this.isAlreadyMounted) {
+          console.log(response);
           this.checkAPIResponse(response);
         }
       }).catch(() => {
@@ -86,8 +97,7 @@ class Search extends Component {
   render() {
     const {
       error,
-      noResults,
-      searching,
+      message,
       books,
     } = this.state;
 
@@ -102,8 +112,7 @@ class Search extends Component {
         />
         <SearchResults
           books={books}
-          noResults={noResults}
-          searching={searching}
+          message={message}
           onChangeShelf={this.handleChangeShelf}
         />
       </div>
