@@ -6,13 +6,17 @@ import constants from '../../utils/constants';
 
 const shelves = Object.entries(constants.SHELVES);
 
+const checkMark = '\u2714';
+
 const Book = (props) => {
   const { shelf, onChange } = props;
+
+  const getCheckmark = key => (key === shelf) && checkMark;
 
   const renderOptions = () => (
     shelves.map(([key, value]) => (
       <option key={randomID()} value={key}>
-        {value}
+        {getCheckmark(key)} {value}
       </option>
     ))
   );
