@@ -23,7 +23,7 @@ const SearchResults = (props) => {
     <div className="search-books-results">
       { noResults && <NoResults /> }
       { searching && <Searching /> }
-      { 
+      {
         !isEmpty(books) &&
         <BooksGrid
           books={books}
