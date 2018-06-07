@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import constants from '../../utils/constants';
 
 const { MAIN } = constants.APP.PATH;
+const { WAIT_INTERVAL, ENTER_KEY } = constants.SEARCH;
 
 class SearchBar extends Component {
   constructor(props) {
@@ -12,13 +13,35 @@ class SearchBar extends Component {
       query: '',
     };
 
+    this.handleKeyDownSearch = this.handleKeyDownSearch.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.handleChangeTrigger = this.handleChangeTrigger.bind(this);
+  }
+
+  componentWillMount() {
+    this.timer = null;
   }
 
   handleChangeSearch(e) {
     const query = e.target.value.trimStart();
+
+    clearTimeout(this.timer);
+
     this.setState({ query });
+
+    this.timer = setTimeout(this.handleChangeTrigger, WAIT_INTERVAL);
+  }
+
+  handleChangeTrigger() {
+    const { query } = this.state;
     this.props.onChangeSearch(query);
+  }
+
+  handleKeyDownSearch(e) {
+    if (e.keyCode === ENTER_KEY) {
+      clearTimeout(this.timer);
+      this.handleChangeTrigger();
+    }
   }
 
   render() {
@@ -32,6 +55,7 @@ class SearchBar extends Component {
           <input
             type="text"
             value={query}
+            onKeyDown={this.handleKeyDownSearch}
             onChange={this.handleChangeSearch}
             placeholder="Search by title or author"
           />

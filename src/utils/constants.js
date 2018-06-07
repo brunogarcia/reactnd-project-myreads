@@ -11,4 +11,8 @@ export default {
     read: 'Read',
     none: 'None',
   },
+  SEARCH: {
+    ENTER_KEY: 13,
+    WAIT_INTERVAL: 500,
+  },
 };
