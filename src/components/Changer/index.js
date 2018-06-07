@@ -4,18 +4,15 @@ import randomID from 'random-id';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 
-const { SHELFS } = constants;
+const items = Object.entries(constants.SHELFS);
 
 const Book = (props) => {
   const { shelf, onChange } = props;
 
   const renderOptions = () => (
-    SHELFS.map(currenShelf => (
-      <option
-        key={randomID()}
-        value={currenShelf.NAME}
-      >
-        {currenShelf.TITLE}
+    items.map(([key, value]) => (
+      <option key={randomID()} value={key}>
+        {value}
       </option>
     ))
   );

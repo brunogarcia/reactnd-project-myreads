@@ -7,14 +7,7 @@ import Searching from '../Searching';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 
-const DEFAULT_SHELF = 'none';
-
-const getDefaultShelf = () => {
-  const { SHELFS } = constants;
-  return SHELFS
-    .filter(shelf => shelf.NAME === DEFAULT_SHELF)
-    .reduce((acc, item) => (item));
-};
+const { none } = constants.SHELFS;
 
 const SearchResults = (props) => {
   const {
@@ -34,7 +27,7 @@ const SearchResults = (props) => {
         !isEmpty(books) &&
         <BooksGrid
           books={books}
-          shelf={getDefaultShelf()}
+          shelf={none.toLowerCase()}
           onChangeShelf={onChangeShelf}
         />
       }

@@ -7,11 +7,13 @@ import Types from '../../utils/types';
 
 const Bookshelfs = (props) => {
   const { shelfs, books, onChangeShelf } = props;
+  const items = Object.entries(shelfs);
 
   return (
     <div className="list-books-content">
-      {shelfs.map((shelf) => {
-        const booksForThisShelf = books.filter(book => book.shelf === shelf.NAME);
+      {items.map((item) => {
+        const [key] = item;
+        const booksForThisShelf = books.filter(book => book.shelf === key);
 
         if (isEmpty(booksForThisShelf)) {
           return null;
@@ -19,8 +21,8 @@ const Bookshelfs = (props) => {
 
         return (
           <Bookshelf
+            shelf={item}
             key={randomID()}
-            shelf={shelf}
             books={booksForThisShelf}
             onChangeShelf={onChangeShelf}
           />
@@ -31,7 +33,7 @@ const Bookshelfs = (props) => {
 };
 
 Bookshelfs.propTypes = {
-  shelfs: PropTypes.arrayOf(Types.shelf).isRequired,
+  shelfs: Types.shelfs.isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };

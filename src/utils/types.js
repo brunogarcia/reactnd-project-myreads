@@ -1,4 +1,8 @@
-import { shape, arrayOf, string } from 'prop-types';
+import { oneOf, shape, arrayOf, string } from 'prop-types';
+import constants from './constants';
+
+const { SHELFS } = constants;
+const shelf = oneOf(Object.keys(SHELFS));
 
 const book = shape({
   title: string.isRequired,
@@ -9,9 +13,11 @@ const book = shape({
   }).isRequired,
 });
 
-const shelf = shape({
-  NAME: string.isRequired,
-  TITLE: string.isRequired,
+const shelfs = shape({
+  none: string.isRequired,
+  read: string.isRequired,
+  wantToRead: string.isRequired,
+  currentlyReading: string.isRequired,
 });
 
-export default { book, shelf };
+export default { book, shelf, shelfs };

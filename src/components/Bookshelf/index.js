@@ -3,19 +3,27 @@ import PropTypes from 'prop-types';
 import BooksGrid from '../BooksGrid';
 import Types from '../../utils/types';
 
-const Bookshelf = props => (
-  <div className="bookshelf">
-    <h2 className="bookshelf-title">
-      {props.shelf.TITLE}
-    </h2>
-    <div className="bookshelf-books">
-      <BooksGrid {...props} />
+const Bookshelf = (props) => {
+  const { shelf, books, onChangeShelf } = props;
+  const [key, title] = shelf;
+  return (
+    <div className="bookshelf">
+      <h2 className="bookshelf-title">
+        {title}
+      </h2>
+      <div className="bookshelf-books">
+        <BooksGrid
+          shelf={key}
+          books={books}
+          onChangeShelf={onChangeShelf}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 Bookshelf.propTypes = {
-  shelf: Types.shelf.isRequired,
+  shelf: PropTypes.arrayOf(PropTypes.string).isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };
