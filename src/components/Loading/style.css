@@ -1,6 +1,7 @@
 .Loading-main {
   text-align: center;
-  z-index: 2;
+  /* This property must have this value because the search bar has a z-index of 5 */
+  z-index: 6;
   position: fixed;
   width: 100%;
   height: 100vh;
