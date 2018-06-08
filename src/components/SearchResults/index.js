@@ -4,13 +4,10 @@ import isEmpty from 'lodash.isempty';
 import BooksGrid from '../BooksGrid';
 import Toastr from '../Toastr';
 import Types from '../../utils/types';
-import constants from '../../utils/constants';
-
-const { none } = constants.SHELVES;
 
 const SearchResults = (props) => {
   const {
-    books,
+    results,
     message,
     onChangeShelf,
   } = props;
@@ -19,10 +16,9 @@ const SearchResults = (props) => {
     <div className="search-books-results">
       <Toastr message={message} />
       {
-        !isEmpty(books) &&
+        !isEmpty(results) &&
         <BooksGrid
-          books={books}
-          shelf={none.toLowerCase()}
+          books={results}
           onChangeShelf={onChangeShelf}
         />
       }
@@ -31,7 +27,7 @@ const SearchResults = (props) => {
 };
 
 SearchResults.propTypes = {
-  books: PropTypes.arrayOf(Types.book).isRequired,
+  results: PropTypes.arrayOf(Types.book).isRequired,
   message: PropTypes.string.isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };
