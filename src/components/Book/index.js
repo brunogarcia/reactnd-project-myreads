@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BookCover from '../BookCover';
 import ShelfChanger from '../ShelfChanger';
+import BookTitle from '../BookTitle';
 import BookAuthors from '../BookAuthors';
 import Types from '../../utils/types';
 
@@ -23,9 +24,7 @@ const Book = (props) => {
             onChange={handleChangeShelf}
           />
         </div>
-        <div className="book-title">
-          {title}
-        </div>
+        <BookTitle title={title} />
         <BookAuthors authors={authors} />
       </div>
     </li>
