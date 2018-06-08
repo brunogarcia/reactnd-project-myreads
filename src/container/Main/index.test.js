@@ -22,3 +22,15 @@ describe('Main states', () => {
     expect(wrapper.find(Error).exists()).toBeTruthy();
   });
 });
+
+describe('Main lifecycle', () => {
+  it('should call getAllBooks when the component did mount', () => {
+    const getAllBooksMocked = jest.spyOn(Main.prototype, 'getAllBooks');
+
+    shallow(<Main />);
+
+    expect(getAllBooksMocked).toHaveBeenCalledTimes(1);
+
+    getAllBooksMocked.mockClear();
+  });
+});
