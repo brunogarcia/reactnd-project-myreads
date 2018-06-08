@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash.isempty';
+import BookCover from '../BookCover';
 import ShelfChanger from '../ShelfChanger';
 import Types from '../../utils/types';
-
-const getImage = image => ({
-  width: 128,
-  height: 193,
-  backgroundImage: `url("${image}")`,
-});
 
 const getAuthors = authors => authors.join(', ');
 
@@ -24,10 +19,7 @@ const Book = (props) => {
     <li>
       <div className="book">
         <div className="book-top">
-          <div
-            className="book-cover"
-            style={getImage(imageLinks.smallThumbnail)}
-          />
+          <BookCover image={imageLinks.smallThumbnail} />
           <ShelfChanger
             shelf={book.shelf}
             onChange={handleChangeShelf}
