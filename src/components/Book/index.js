@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash.isempty';
-import Changer from '../Changer';
+import ShelfChanger from '../ShelfChanger';
 import Types from '../../utils/types';
 
 const getImage = image => ({
@@ -28,7 +28,7 @@ const Book = (props) => {
             className="book-cover"
             style={getImage(imageLinks.smallThumbnail)}
           />
-          <Changer
+          <ShelfChanger
             shelf={book.shelf}
             onChange={handleChangeShelf}
           />

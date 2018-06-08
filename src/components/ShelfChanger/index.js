@@ -8,7 +8,7 @@ const shelves = Object.entries(constants.SHELVES);
 
 const checkMark = '\u2714';
 
-const Book = (props) => {
+const ShelfChanger = (props) => {
   const { shelf, onChange } = props;
 
   const getCheckmark = key => (key === shelf) && checkMark;
@@ -36,9 +36,9 @@ const Book = (props) => {
   );
 };
 
-Book.propTypes = {
+ShelfChanger.propTypes = {
   shelf: Types.shelfID.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default Book;
+export default ShelfChanger;
