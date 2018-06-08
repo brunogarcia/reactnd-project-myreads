@@ -13,7 +13,7 @@ const getImage = image => ({
 const getAuthors = authors => authors.join(', ');
 
 const Book = (props) => {
-  const { shelf, book, onChangeShelf } = props;
+  const { book, onChangeShelf } = props;
   const { title, authors, imageLinks } = book;
 
   const handleChangeShelf = (newShelf) => {
@@ -28,7 +28,10 @@ const Book = (props) => {
             className="book-cover"
             style={getImage(imageLinks.smallThumbnail)}
           />
-          <Changer shelf={shelf} onChange={handleChangeShelf} />
+          <Changer
+            shelf={book.shelf}
+            onChange={handleChangeShelf}
+          />
         </div>
         <div className="book-title">{title}</div>
         {
@@ -41,7 +44,6 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
-  shelf: Types.shelf.isRequired,
   book: Types.book.isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };

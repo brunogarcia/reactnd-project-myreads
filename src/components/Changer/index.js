@@ -37,7 +37,7 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
-  shelf: Types.shelf.isRequired,
+  shelf: Types.shelfID.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

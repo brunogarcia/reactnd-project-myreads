@@ -12,7 +12,7 @@ const Bookshelves = (props) => {
   return (
     <div className="list-books-content">
       {items.map((item) => {
-        const [key] = item;
+        const [key, title] = item;
         const booksForThisShelf = books.filter(book => book.shelf === key);
 
         if (isEmpty(booksForThisShelf)) {
@@ -21,7 +21,7 @@ const Bookshelves = (props) => {
 
         return (
           <Bookshelf
-            shelf={item}
+            title={title}
             key={randomID()}
             books={booksForThisShelf}
             onChangeShelf={onChangeShelf}
