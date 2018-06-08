@@ -52,6 +52,10 @@ class Search extends Component {
   }
 
   handleChangeShelf(book, shelf) {
+    this.setState({
+      message: MESSAGES.applyingChanges,
+    });
+
     BooksAPI.update(book, shelf)
       .then((response) => {
         if (!isEmpty(response) && this.isAlreadyMounted) {

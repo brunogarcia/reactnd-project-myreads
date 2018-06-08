@@ -17,6 +17,7 @@ export default {
       noResults: 'No results for that query!',
       searching: 'Searching...',
       shelfChanged: 'Change applied successfully',
+      applyingChanges: 'Applying changes...',
       placeholder: 'Search by title or author',
     },
   },
