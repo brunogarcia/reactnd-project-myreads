@@ -71,7 +71,7 @@ body, .app {
 .toastr-message {
   margin-top: -20px;
   text-align: center;
-  position: fixed;
+  position: relative;
   width: 100%;
 }
 
