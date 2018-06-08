@@ -18,7 +18,7 @@ const Book = (props) => {
     <li>
       <div className="book">
         <div className="book-top">
-          <BookCover image={imageLinks.smallThumbnail} />
+          <BookCover image={imageLinks} />
           <ShelfChanger
             shelf={book.shelf}
             onChange={handleChangeShelf}

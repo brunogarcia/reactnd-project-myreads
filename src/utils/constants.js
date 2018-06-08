@@ -21,4 +21,7 @@ export default {
       placeholder: 'Search by title or author',
     },
   },
+  IMAGE: {
+    DEFAULT: 'https://dummyimage.com/128x193/eeeeee/999999&text=No+cover+image',
+  },
 };

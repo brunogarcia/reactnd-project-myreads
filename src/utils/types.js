@@ -10,7 +10,7 @@ const book = shape({
   imageLinks: shape({
     smallThumbnail: string.isRequired,
     thumbnail: string.isRequired,
-  }).isRequired,
+  }),
 });
 
 const shelves = shape({
