@@ -4,36 +4,32 @@ import randomID from 'random-id';
 import isEmpty from 'lodash.isempty';
 import Bookshelf from '../../components/Bookshelf';
 import Types from '../../utils/types';
+import constants from '../../utils/constants';
 
-const Bookshelves = (props) => {
-  const { shelves, books, onChangeShelf } = props;
-  const items = Object.entries(shelves);
+const shelves = Object.entries(constants.SHELVES);
 
-  return (
-    <div className="list-books-content">
-      {items.map((item) => {
-        const [key, title] = item;
-        const booksForThisShelf = books.filter(book => book.shelf === key);
+const Bookshelves = ({ books, onChangeShelf }) => (
+  <div className="list-books-content">
+    {shelves.map(([shelf, title]) => {
+      const booksInThisShelf = books.filter(book => book.shelf === shelf);
 
-        if (isEmpty(booksForThisShelf)) {
-          return null;
-        }
+      if (isEmpty(booksInThisShelf)) {
+        return null;
+      }
 
-        return (
-          <Bookshelf
-            title={title}
-            key={randomID()}
-            books={booksForThisShelf}
-            onChangeShelf={onChangeShelf}
-          />
-        );
-      })}
-    </div>
-  );
-};
+      return (
+        <Bookshelf
+          title={title}
+          key={randomID()}
+          books={booksInThisShelf}
+          onChangeShelf={onChangeShelf}
+        />
+      );
+    })}
+  </div>
+);
 
 Bookshelves.propTypes = {
-  shelves: Types.shelves.isRequired,
   books: PropTypes.arrayOf(Types.book).isRequired,
   onChangeShelf: PropTypes.func.isRequired,
 };

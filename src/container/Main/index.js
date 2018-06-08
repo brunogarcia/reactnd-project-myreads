@@ -6,7 +6,6 @@ import AddBook from '../../components/AddBook';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
 import * as BooksAPI from '../../BooksAPI';
-import constants from '../../utils/constants';
 
 class Main extends Component {
   constructor(props) {
@@ -14,7 +13,6 @@ class Main extends Component {
     this.state = {
       error: false,
       loading: true,
-      shelves: constants.SHELVES,
       books: [],
     };
 
@@ -71,7 +69,6 @@ class Main extends Component {
     const {
       error,
       loading,
-      shelves,
       books,
     } = this.state;
 
@@ -86,7 +83,6 @@ class Main extends Component {
           <Header />
           <Bookshelves
             books={books}
-            shelves={shelves}
             onChangeShelf={this.handleChangeShelf}
           />
           <AddBook />
