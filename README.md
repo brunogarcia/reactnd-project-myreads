@@ -1,8 +1,12 @@
 # MyReads Project
 
-A technical task developed with React.
+A project developed for [Udacity React Nanodegree](https://eu.udacity.com/course/react-nanodegree--nd019)
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+Bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+## See in action
+
+[https://myreads-brunogarcia.now.sh](https://myreads-brunogarcia.now.sh)
 
 ## Available Scripts
 
