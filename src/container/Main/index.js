@@ -65,20 +65,10 @@ class Main extends Component {
       });
   }
 
-  render() {
-    const {
-      error,
-      loading,
-      books,
-    } = this.state;
-
-    if (error) {
-      return <Error />;
-    }
-
+  renderMain() {
+    const { books } = this.state;
     return (
       <div className="main">
-        <Loading isLoading={loading} />
         <div className="list-books">
           <Header />
           <Bookshelves
@@ -89,6 +79,20 @@ class Main extends Component {
         </div>
       </div>
     );
+  }
+
+  render() {
+    const { error, loading } = this.state;
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (loading) {
+      return <Loading />;
+    }
+
+    return this.renderMain();
   }
 }
 

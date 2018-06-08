@@ -118,21 +118,10 @@ class Search extends Component {
       });
   }
 
-  render() {
-    const {
-      error,
-      loading,
-      message,
-      results,
-    } = this.state;
-
-    if (error) {
-      return <Error />;
-    }
-
+  renderSearch() {
+    const { message, results } = this.state;
     return (
       <div className="search-books">
-        <Loading isLoading={loading} />
         <SearchBar
           onChangeSearch={this.handleChangeSearch}
         />
@@ -143,6 +132,20 @@ class Search extends Component {
         />
       </div>
     );
+  }
+
+  render() {
+    const { error, loading } = this.state;
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (loading) {
+      return <Loading />;
+    }
+
+    return this.renderSearch();
   }
 }
 
