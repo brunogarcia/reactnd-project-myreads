@@ -10,7 +10,7 @@ const BookAuthors = ({ authors }) => (
 );
 
 BookAuthors.propTypes = {
-  authors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  authors: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default BookAuthors;
