@@ -6,17 +6,9 @@ import SearchBar from '../../components/SearchBar';
 import SearchResults from '../../components/SearchResults';
 import Loading from '../../components/Loading';
 import constants from '../../utils/constants';
+import utilSearch from '../../utils/search';
 
 const { MIN_LENGTH, MESSAGES } = constants.SEARCH;
-
-/**
- * Create a map of my bookshelves
- * @param books: collection of book objects
- * @returns collection of user's books objects with this structure {id: '12345', shelf: 'read'}
- */
-const createMapOfMyBookshelves = books => (
-  books.reduce((acc, { id, shelf }) => (acc.concat({ id, shelf })), [])
-);
 
 class Search extends Component {
   constructor(props) {
@@ -45,7 +37,7 @@ class Search extends Component {
     BooksAPI.getAll()
       .then((response) => {
         if (this.isAlreadyMounted) {
-          this.myBookshelves = createMapOfMyBookshelves(response);
+          utilSearch.createMapOfMyBookshelves(response);
           this.setState({
             loading: false,
           });
@@ -57,19 +49,6 @@ class Search extends Component {
           });
         }
       });
-  }
-
-  getIndexOnMyBookshelves(id) {
-    return this.myBookshelves.findIndex(book => book.id === id);
-  }
-
-  getBookShelf(bookId) {
-    const index = this.getIndexOnMyBookshelves(bookId);
-    const noResults = (index === -1);
-
-    return noResults ?
-      constants.SHELVES.none.toLowerCase() :
-      this.myBookshelves[index].shelf;
   }
 
   handleChangeShelf(book, shelf) {
@@ -111,22 +90,9 @@ class Search extends Component {
     } else {
       this.setState({
         message: '',
-        results: this.addShelvesToBooks(response),
+        results: utilSearch.addShelvesToBooks(response),
       });
     }
-  }
-
-  /**
-   * Add a proper shelf to each book
-   * @param response: collection of book objects
-   * @return collection of book with a proper shelf assigned
-   */
-  addShelvesToBooks(books) {
-    return books.map((book) => {
-      const clonedBook = { ...book };
-      clonedBook.shelf = this.getBookShelf(book.id);
-      return clonedBook;
-    });
   }
 
   searchBooks(query) {
