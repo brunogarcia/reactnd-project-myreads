@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEmpty from 'lodash.isempty';
 import BookCover from '../BookCover';
 import ShelfChanger from '../ShelfChanger';
+import BookAuthors from '../BookAuthors';
 import Types from '../../utils/types';
-
-const getAuthors = authors => authors.join(', ');
 
 const Book = (props) => {
   const { book, onChangeShelf } = props;
@@ -25,11 +23,10 @@ const Book = (props) => {
             onChange={handleChangeShelf}
           />
         </div>
-        <div className="book-title">{title}</div>
-        {
-          !isEmpty(authors) &&
-          <div className="book-authors">{getAuthors(authors)}</div>
-        }
+        <div className="book-title">
+          {title}
+        </div>
+        <BookAuthors authors={authors} />
       </div>
     </li>
   );
