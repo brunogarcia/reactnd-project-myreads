@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import constants from '../../utils/constants';
 
-const { SEARCH } = constants.APP.PATH;
+const { SEARCH } = constants.PATH;
 
 const AddBook = () => (
   <div className="open-search">

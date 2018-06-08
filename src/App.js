@@ -6,7 +6,7 @@ import NoMatch from './components/NoMatch';
 import constants from './utils/constants';
 import './App.css';
 
-const { MAIN, SEARCH } = constants.APP.PATH;
+const { MAIN, SEARCH } = constants.PATH;
 
 const BooksApp = () => (
   <Router>

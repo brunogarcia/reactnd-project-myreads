@@ -6,7 +6,7 @@ import SearchBar from '../../components/SearchBar';
 import SearchResults from '../../components/SearchResults';
 import constants from '../../utils/constants';
 
-const { MIN_LENGTH_SEARCH, MESSAGES } = constants.SEARCH;
+const { MIN_LENGTH, MESSAGES } = constants.SEARCH;
 
 class Search extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class Search extends Component {
   }
 
   handleChangeSearch(query) {
-    if (query.length < MIN_LENGTH_SEARCH) {
+    if (query.length < MIN_LENGTH) {
       this.setState({
         books: [],
         message: '',

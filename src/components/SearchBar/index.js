@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import constants from '../../utils/constants';
 
-const { MAIN } = constants.APP.PATH;
-const { WAIT_INTERVAL, ENTER_KEY } = constants.SEARCH;
+const { MAIN } = constants.PATH;
+const { WAIT_INTERVAL, ENTER_KEY, MESSAGES } = constants.SEARCH;
 
 class SearchBar extends Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class SearchBar extends Component {
             value={query}
             onKeyDown={this.handleKeyDownSearch}
             onChange={this.handleChangeSearch}
-            placeholder="Search by title or author"
+            placeholder={MESSAGES.placeholder}
           />
         </div>
       </div>
