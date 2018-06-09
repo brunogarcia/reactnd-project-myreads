@@ -5,26 +5,18 @@ import BooksGrid from '../BooksGrid';
 import Toastr from '../Toastr';
 import Types from '../../utils/types';
 
-const SearchResults = (props) => {
-  const {
-    results,
-    message,
-    onChangeShelf,
-  } = props;
-
-  return (
-    <div className="search-books-results">
-      <Toastr message={message} />
-      {
-        !isEmpty(results) &&
-        <BooksGrid
-          books={results}
-          onChangeShelf={onChangeShelf}
-        />
-      }
-    </div>
-  );
-};
+const SearchResults = ({ results, message, onChangeShelf }) => (
+  <div className="search-books-results">
+    <Toastr message={message} />
+    {
+      !isEmpty(results) &&
+      <BooksGrid
+        books={results}
+        onChangeShelf={onChangeShelf}
+      />
+    }
+  </div>
+);
 
 SearchResults.propTypes = {
   results: PropTypes.arrayOf(Types.book).isRequired,

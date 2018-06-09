@@ -6,8 +6,7 @@ import BookTitle from '../BookTitle';
 import BookAuthors from '../BookAuthors';
 import Types from '../../utils/types';
 
-const Book = (props) => {
-  const { book, onChangeShelf } = props;
+const Book = ({ book, onChangeShelf }) => {
   const { title, authors, imageLinks } = book;
 
   const handleChangeShelf = (newShelf) => {

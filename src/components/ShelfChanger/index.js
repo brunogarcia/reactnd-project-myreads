@@ -4,13 +4,11 @@ import randomID from 'random-id';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 
-const shelves = Object.entries(constants.SHELVES);
-
 const checkMark = '\u2714';
 
-const ShelfChanger = (props) => {
-  const { shelf, onChange } = props;
+const shelves = Object.entries(constants.SHELVES);
 
+const ShelfChanger = ({ shelf, onChange }) => {
   const getCheckmark = key => (key === shelf) && checkMark;
 
   const renderOptions = () => (
