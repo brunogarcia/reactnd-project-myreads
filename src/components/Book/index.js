@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash.isempty';
 import BookCover from '../BookCover';
 import ShelfChanger from '../ShelfChanger';
 import BookTitle from '../BookTitle';
@@ -24,7 +25,7 @@ const Book = ({ book, onChangeShelf }) => {
           />
         </div>
         <BookTitle title={title} />
-        <BookAuthors authors={authors} />
+        { !isEmpty(authors) && <BookAuthors authors={authors} /> }
       </div>
     </li>
   );
