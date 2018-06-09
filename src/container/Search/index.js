@@ -19,9 +19,6 @@ class Search extends Component {
       error: false,
       results: [],
     };
-
-    this.handleChangeSearch = this.handleChangeSearch.bind(this);
-    this.handleChangeShelf = this.handleChangeShelf.bind(this);
   }
 
   componentDidMount() {
@@ -51,7 +48,7 @@ class Search extends Component {
       });
   }
 
-  handleChangeShelf(book, shelf) {
+  handleChangeShelf = (book, shelf) => {
     this.setState({
       message: MESSAGES.applyingChanges,
     });
@@ -72,7 +69,7 @@ class Search extends Component {
       });
   }
 
-  handleChangeSearch(query) {
+  handleChangeSearch = (query) => {
     if (query.length < MIN_LENGTH) {
       this.setState({
         results: [],

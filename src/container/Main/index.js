@@ -15,8 +15,6 @@ class Main extends Component {
       loading: true,
       books: [],
     };
-
-    this.handleChangeShelf = this.handleChangeShelf.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +44,7 @@ class Main extends Component {
       });
   }
 
-  handleChangeShelf(book, shelf) {
+  handleChangeShelf = (book, shelf) => {
     this.setState({
       loading: true,
     });

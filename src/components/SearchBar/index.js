@@ -13,17 +13,13 @@ class SearchBar extends Component {
     this.state = {
       query: '',
     };
-
-    this.handleKeyDownSearch = this.handleKeyDownSearch.bind(this);
-    this.handleChangeSearch = this.handleChangeSearch.bind(this);
-    this.handleChangeTrigger = this.handleChangeTrigger.bind(this);
   }
 
   componentWillMount() {
     this.timer = null;
   }
 
-  handleChangeSearch(e) {
+  handleChangeSearch =(e) => {
     const { value } = e.target;
 
     if (!isUndefined(value)) {
@@ -35,12 +31,12 @@ class SearchBar extends Component {
     }
   }
 
-  handleChangeTrigger() {
+  handleChangeTrigger = () => {
     const { query } = this.state;
     this.props.onChangeSearch(query);
   }
 
-  handleKeyDownSearch(e) {
+  handleKeyDownSearch = (e) => {
     if (e.keyCode === ENTER_KEY) {
       clearTimeout(this.timer);
       this.handleChangeTrigger();
