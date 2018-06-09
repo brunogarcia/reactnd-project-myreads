@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import isUndefined from 'lodash.isundefined';
 import constants from '../../utils/constants';
 
 const { MAIN } = constants.PATH;
@@ -23,13 +24,15 @@ class SearchBar extends Component {
   }
 
   handleChangeSearch(e) {
-    const query = e.target.value.trimStart();
+    const { value } = e.target;
 
-    clearTimeout(this.timer);
+    if (!isUndefined(value)) {
+      clearTimeout(this.timer);
 
-    this.setState({ query });
+      this.setState({ query: value.trimStart() });
 
-    this.timer = setTimeout(this.handleChangeTrigger, WAIT_INTERVAL);
+      this.timer = setTimeout(this.handleChangeTrigger, WAIT_INTERVAL);
+    }
   }
 
   handleChangeTrigger() {
