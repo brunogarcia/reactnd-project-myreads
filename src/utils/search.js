@@ -12,7 +12,7 @@ const createMapOfMyBookshelves = (books) => {
 };
 
 /**
- * Find the index of a book into the all the bookshelves
+ * Find the index of a book in the bookshelves
  * @param id: a book id
  * @returns a number with the index of the book or -1 if not found a match
  */
@@ -21,7 +21,8 @@ const getIndexOnMyBookshelves = id => myBookshelves.findIndex(book => book.id ==
 /**
  * Get the shelf of a book
  * @param id: a book id
- * @returns a string with the shelf ('currentlyReading', 'wantToRead', 'read')
+ * @returns a string with the shelf
+ *          must be one of these: 'currentlyReading', 'wantToRead', 'read'
  *          or 'none' if not found a match
  */
 const getBookShelf = (id) => {
