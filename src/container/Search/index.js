@@ -11,14 +11,11 @@ import utilSearch from '../../utils/search';
 const { MIN_LENGTH, MESSAGES } = constants.SEARCH;
 
 class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: '',
-      loading: true,
-      error: false,
-      results: [],
-    };
+  state = {
+    message: '',
+    loading: true,
+    error: false,
+    results: [],
   }
 
   componentDidMount() {

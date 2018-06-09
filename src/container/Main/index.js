@@ -8,13 +8,10 @@ import Loading from '../../components/Loading';
 import * as BooksAPI from '../../BooksAPI';
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: false,
-      loading: true,
-      books: [],
-    };
+  state = {
+    error: false,
+    loading: true,
+    books: [],
   }
 
   componentDidMount() {

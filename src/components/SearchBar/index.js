@@ -8,11 +8,8 @@ const { MAIN } = constants.PATH;
 const { WAIT_INTERVAL, ENTER_KEY, MESSAGES } = constants.SEARCH;
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: '',
-    };
+  state = {
+    query: '',
   }
 
   componentWillMount() {
