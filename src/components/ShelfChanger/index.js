@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import randomID from 'random-id';
+import randomID from '../../utils/randomId';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 

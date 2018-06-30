@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import randomID from 'random-id';
 import isEmpty from 'lodash.isempty';
 import Bookshelf from '../../components/Bookshelf';
+import randomID from '../../utils/randomId';
 import Types from '../../utils/types';
 import constants from '../../utils/constants';
 
