@@ -6,7 +6,7 @@ Bootstrapped with [Create React App](https://github.com/facebookincubator/create
 
 ## See in action
 
-[https://react-my-reads.now.sh/(https://react-my-reads.now.sh/)
+[https://react-my-reads.now.sh](https://react-my-reads.now.sh/)
 
 ## Available Scripts
 
